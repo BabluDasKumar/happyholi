@@ -1,0 +1,165 @@
+<DOCTYPE html>
+<html>
+<head>
+<title>
+</title>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+ </head>
+ 
+ <body>
+ <div class ="container"><br>
+ <h1 class ="text-success text-center"> Complete Form validation In Javascript</h1><br>
+ <div class ="col-lg-8 m-auto d-block">
+ 
+ <form action ="#" onsubmit="return validation()" class ="bg-light">
+ 
+  <div class="form-group">
+    <label>Username</label>
+  <input type ="text" name="user" class ="form-control" id="user" autocomplete ="off">
+  <span id="username" class ="text-danger font-weight-bold"></span>
+  </div>
+  
+  <div class="form-group">
+  <label>Password</label>
+  <input type ="text" name="pass" class ="form-control" id="pass" autocomplete ="off">
+  <span id="password" class ="text-danger font-weight-bold"></span>
+  </div>
+   
+  <div class="form-group">
+  <label>Confirm Password</label>
+  <input type ="text" name="compass" class ="form-control" id="compass" autocomplete ="off">
+  <span id="confrmpass" class ="text-danger font-weight-bold"></span>
+  </div>
+  
+  <div class="form-group">
+  <label>Mobile Number</label>
+  <input type ="text" name="mobile" class ="form-control" id="MobileNumber" autocomplete ="off">
+  <span id="mobileNo" class ="text-danger font-weight-bold"></span>
+  </div>
+  
+  <div class="form-group">
+  <label>Email</label>
+  <input type ="text" name="email" class ="form-control" id="emails" autocomplete ="off">
+  <span id="emailId" class ="text-danger font-weight-bold"></span>
+  </div>
+  
+  <input type="submit" name="submit" value ="submit" class ="btn btn-success" >
+  </form>
+  
+  </div>
+  </div>
+  
+  <script type ="text/javascript">
+  function validation(){
+  var user = document.getElementById('user').value;
+  var pass = document.getElementById('pass').value;
+  var compass = document.getElementById('compass').value;
+  var mobile = document.getElementById('MobileNumber').value;
+  var email = document.getElementById('emails').value;
+  
+  if(user==""){
+  document.getElementById('username').innerHTML="**Please fill the username field";
+  return false;
+  }
+  if((user.length<=2)||(user.length>20)){
+  document.getElementById('username').innerHTML="**Please fill the valied length between 3 and 20";
+  return false;
+  }
+  if(pass==""){
+  document.getElementById('password').innerHTML="**Please fill the valied password";
+  return false;
+  }
+  if((pass.length<5)||(pass.length>20)){
+  document.getElementById('password').innerHTML="**Please fill the valied length of password";
+  return false;
+  }
+  if(compass!=pass){
+  document.getElementById('confrmpass').innerHTML="**Please fill the correct password";
+  return false;
+  }
+  if(mobile==""){
+  document.getElementById('mobileNo').innerHTML="**Please fill the mobile Number";
+  return false;
+  }
+  if(mobile.length!=10){
+  document.getElementById('mobileNo').innerHTML="**Please fill the correct mobile Number";
+  return false;
+  }
+  if(email==""){
+  document.getElementById('emailId').innerHTML="**Please fill the emailId field";
+  return false;
+  }
+  if(email.indexOf('@')<=0){
+  document.getElementById('emailId').innerHTML="**@  must write corect position";
+  return false;
+  }
+  if((email.charAt(emails.length-4)!='.')&&(emails.charAt(emails.length-3)!='.')){
+  document.getElementById('emailId').innerHTML="**Invalied positions";
+  return false;
+  }
+  
+  function Captcha(){
+                     var alpha = new Array('A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','@','#','$','%','&','*','1','2','3','4','5','6','7','8','9','0');
+                     var i;
+                     for (i=0;i<3;i++){
+                       var a = alpha[Math.floor(Math.random() * alpha.length)];
+                       var b = alpha[Math.floor(Math.random() * alpha.length)];
+                       var c = alpha[Math.floor(Math.random() * alpha.length)];
+                       var d = alpha[Math.floor(Math.random() * alpha.length)];
+                       //var e = alpha[Math.floor(Math.random() * alpha.length)];
+                       //var f = alpha[Math.floor(Math.random() * alpha.length)];
+                      // var g = alpha[Math.floor(Math.random() * alpha.length)];
+                      }
+                    var code = a+b+c+d;
+                    document.getElementById("mainCaptcha").value = code
+                  }
+                  function ValidCaptcha(){
+                      var string1 = removeSpaces(document.getElementById('mainCaptcha').value);
+                      var string2 = removeSpaces(document.getElementById('txtInput').value);
+                      if (string1 == string2){
+                        return true;
+                      }
+                      else{        
+                        return false;
+                      }
+                  }
+                  function removeSpaces(string){
+                    return string.split('').join('');
+                  }
+				  }
+  </script>
+  <body onload="Captcha();">
+        <table>
+          <tr>
+           <td>
+                 Text Captcha<br />
+           </td>
+          </tr>
+          <tr>
+           <td>
+             <input type="text" id="mainCaptcha"/>
+              <input type="button" id="refresh" value="Refresh" onclick="Captcha();" />
+           </td>
+          </tr>
+          <tr>
+           <td>
+            <input type="text" id="txtInput"/> 
+  <input id="Button1" type="button" value="submit" onclick="alert(ValidCaptcha());"/>			
+          </td>
+         </tr>
+         
+      </table>
+   
+  </body>
+  </html>
+ 
